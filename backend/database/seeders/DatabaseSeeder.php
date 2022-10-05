@@ -16,5 +16,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        Room::create([
+            'name' => 'Room 1'
+        ]);
+
+        Room::create([
+            'name' => 'Room 2'
+        ]);
+
+        Room::create([
+            'name' => 'Room 3'
+        ]);
     }
 }

@@ -22,6 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::get('/getAllRooms', [MessageController::class, 'getAllRooms']);
+Route::get('/rooms', [MessageController::class, 'getAllRooms']);
 Route::post('/sendMessage', [MessageController::class, 'sendMessage']);
 Route::get('/joinRoom/{room_id}', [MessageController::class, 'joinRoom']);
