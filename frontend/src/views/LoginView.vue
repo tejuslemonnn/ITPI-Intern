@@ -36,6 +36,14 @@ export default {
         })
     },
 
+    created(){
+        let socket = io(`http://localhost:3000`);
+
+        socket.on(`test`, data => {
+            console.log(data.data);
+        })
+    },
+
     methods: {
         goRoom(){
             localStorage.setItem('name', this.name);

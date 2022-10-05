@@ -12,15 +12,13 @@ var io = require('socket.io')(server,  {
 
 redis.psubscribe('*');
 
-redis.on('pmessage', function (pattern, channel, message) {
-    message = JSON.parse(message);
 
-    // Pass data to Socket.io every time we get a new message from Redis
-    // "channel + ':' + message.event" is a unique channel id to broadcast to
-    //
-    // message.data corresponds to the $data variable in the MessageSent event
-    // in Laravel
-    io.emit(channel + ':' + message.event, message.message);
+redis.on("pmessage", function (pattern, channel, message) {
+    message = JSON.parse(message);
+    io.emit("test", message);
+    console.log(message);
+    console.log(channel);
+    console.log(pattern);
 });
 
 server.listen(3000);

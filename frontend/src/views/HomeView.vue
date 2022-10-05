@@ -7,9 +7,12 @@
 <script>
 import chatBox from "../components/chatBox.vue"
 
+
 export default {
     components:{
         chatBox
-    }
+    },
+
+
 }
 </script>

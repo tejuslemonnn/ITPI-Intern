@@ -14,6 +14,9 @@ class TestEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $data;
+
+
     /**
      * Create a new event instance.
      *
@@ -21,7 +24,7 @@ class TestEvent implements ShouldBroadcast
      */
     public function __construct()
     {
-        //
+        $this->data = "Haloo";
     }
 
     /**
@@ -31,6 +34,6 @@ class TestEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('test');
+        return new Channel('halo');
     }
 }
