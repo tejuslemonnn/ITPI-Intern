@@ -592,6 +592,10 @@ video {
   width: 50%;
 }
 
+.overflow-scroll {
+  overflow: scroll;
+}
+
 .border-2 {
   border-width: 2px;
 }
