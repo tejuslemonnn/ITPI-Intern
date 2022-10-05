@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\RoomMessage;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\room;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+<<<<<<< Updated upstream
         RoomMessage::create([
             'name' => 'Room 001',
         ]);
@@ -26,5 +29,16 @@ class DatabaseSeeder extends Seeder
         RoomMessage::create([
             'name' => 'Room 003',
         ]);
+=======
+        room::create([
+            "name" => "001",
+        ]);
+
+        room::create([
+            "name" => "002",
+        ]);
+        
+
+>>>>>>> Stashed changes
     }
 }
