@@ -4,7 +4,6 @@ use App\Events\TestEvent;
 use App\Http\Controllers\MessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
