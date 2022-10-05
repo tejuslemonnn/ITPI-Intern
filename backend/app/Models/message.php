@@ -2,20 +2,21 @@
 
 namespace App\Models;
 
-use App\Models\room;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class message extends Model
+class Message extends Model
 {
     use HasFactory;
 
-    public $guarded = [
-        'id'
+    protected $fillable = [
+        'room_id',
+        'name',
+        'message',
     ];
 
-
-    public function room(){
-        return $this->belongsTo(room::class);
+    function rooms()
+    {
+        return $this->belongsTo(Room::class);
     }
 }

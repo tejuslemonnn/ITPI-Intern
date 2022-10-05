@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< Updated upstream
 use App\Events\MessageSend;
 use App\Models\Message;
 use App\Models\RoomMessage;
@@ -46,53 +45,5 @@ class MessageController extends Controller
         return response()->json([
             'message' => $message
         ], 200);
-=======
-use App\Models\message;
-use App\Models\room;
-use Illuminate\Http\Request;
-use App\Events\messageSent;
-
-class MessageController extends Controller
-{
-    public function getRooms(){
-        return response()->json([
-            'rooms' => room::all()
-        ]);
-    }
-
-    public function roomMessage($id){
-        $room = room::find($id); 
-        return response()->json([
-            'room' => $room,
-            'messages' => $room->message
-        ]);
-    }
-
-    public function addMessage(Request $request){
-        $name = $request->get('name');
-        $text = $request->get('text');
-        $room_id = $request->get('room_id');
-        
-        try {
-            $message = message::create([
-                'name' => $name,
-                'text' => $text,
-                'room_id' => $room_id
-            ]);
-
-
-            event(new messageSent($message->room()->id, $message));
-
-            return response()->json([
-                'status' => 'success'
-            ]);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => 'error'
-            ]);
-        }
-
-
->>>>>>> Stashed changes
     }
 }
