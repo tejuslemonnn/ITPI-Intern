@@ -7,17 +7,17 @@
                 <!-- self -->
                 <div v-if="message.name == name" class="border-2 w-fit text-right ml-auto pl-9 border-solid py-1 px-2 mt-3 border-slate-700">
                     <p class="text-sm text-slate-500">{{message.name}}</p>
-                    <p class="text-sm text-slate-800">{{ message.text }}</p>
+                    <p class="text-sm text-slate-800">{{ message.message }}</p>
                 </div>
                 <div v-else class="border-2 mr-[10%] w-fit pr-9 border-solid py-1 px-2 mt-3 border-slate-700">
                     <p class="text-sm text-slate-500">{{message.name}}</p>
-                    <p class="text-sm text-slate-800">{{message.text}}</p>
+                    <p class="text-sm text-slate-800">{{message.message}}</p>
                 </div>
             </div>  
         </div>
         <div class="border-t-2 border-solid border-t-slate-300">
             <div class="flex">
-                <input v-on:keyup="checkSend" class="w-[85%] py-5" v-model="text" type="text">
+                <input v-on:keyup="checkSend" class="w-[85%] py-5" v-model="message" type="text">
                 <button @click="sendMessage()" class="bg-green-500 w-[200px] block">Send</button>
             </div>
         </div>
@@ -31,7 +31,7 @@ export default {
     data(){
         return{
             room: [],
-            text: '',
+            message: '',
             name: localStorage.getItem('name'),
             messages: [
             ]
@@ -58,20 +58,19 @@ export default {
 
     methods:{
         async fetchMessage(){
-        let url = "http://127.0.0.1:8000/api/room/" + localStorage.getItem('room_code')
+        let url = "http://127.0.0.1:8000/api/joinRoom/" + localStorage.getItem('room_code')
         await axios.get(url).then((response) => {
             this.messages = response.data.messages
             this.room = response.data.room
-
-            console.log(this.messages[0].name);
+            
         })
         },
 
 
         async sendMessage(){
-            await axios.post('http://127.0.0.1:8000/api/send/message', {
+            await axios.post('http://127.0.0.1:8000/api/sendMessage', {
                 name: this.name,
-                text: this.text,
+                message: this.message,
                 room_id: this.room.id
             }).then((response) => {
                 
@@ -79,11 +78,11 @@ export default {
             
             this.messages.push({
                 name: this.name,
-                text: this.text,
+                message: this.message,
                 type: "self"
             })
 
-            this.text = ""
+            this.message = ""
         },
         checkSend(e){
             if (e.keyCode === 13){
