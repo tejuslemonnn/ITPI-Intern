@@ -18,10 +18,12 @@ class MessageController extends Controller
         ]);
     }
 
-    public function joinRoom($room_id)
+    public function joinRoom($id)
     {
-        $room = Message::find($room_id);
-        $messages = Message::where('room_id', $room_id)->get();
+        $room = Room::find($id);
+        $messages = $room->messages()->get();
+
+        // event(new MessageSent($room, $messages));
 
         return response()->json([
             'room' => $room,

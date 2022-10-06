@@ -24,9 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/rooms', [MessageController::class, 'getAllRooms']);
 Route::post('/sendMessage', [MessageController::class, 'sendMessage']);
-Route::get('/joinRoom/{room_id}', [MessageController::class, 'joinRoom']);
+Route::get('/joinRoom/{id}', [MessageController::class, 'joinRoom']);
 
 Route::get('/test', function () {
     event(new TestEvent());
-    return 'Event has been sent!';
+    dd('Event has been sent!');
 });

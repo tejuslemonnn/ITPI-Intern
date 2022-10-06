@@ -1,17 +1,16 @@
-var server = require('http').Server();
+var server = require("http").Server();
 
-var Redis = require('ioredis');
+var Redis = require("ioredis");
 var redis = new Redis();
 
 // Create a new Socket.io instance
-var io = require('socket.io')(server,  {
+var io = require("socket.io")(server, {
     cors: {
-      origin: '*',
-    }
-  });
+        origin: "*",
+    },
+});
 
-redis.psubscribe('*');
-
+redis.psubscribe("*");
 
 redis.on("pmessage", function (pattern, channel, message) {
     message = JSON.parse(message);
@@ -23,5 +22,4 @@ redis.on("pmessage", function (pattern, channel, message) {
 
 server.listen(3000);
 
-
-console.log('Server started');
+console.log("Server started");
