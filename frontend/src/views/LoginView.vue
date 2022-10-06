@@ -4,7 +4,7 @@
         <div class="m-3">
             <div>
                 <label for="">Room : </label>
-                <select class="bg-white text-black" name="room" id="">
+                <select v-model="room_code" class="bg-white text-black" name="room" id="">
                     <option v-for="room in rooms" :value="room.id">{{room.name}}</option>
                 </select>
             </div>

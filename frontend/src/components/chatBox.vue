@@ -39,8 +39,8 @@ export default {
     },
 
 
-    created() {
-        this.fetchMessage()
+    async created() {
+        await this.fetchMessage()
 
 
         // Connect to Socket.io
@@ -48,8 +48,8 @@ export default {
 
         // For each channel...
         // ... listen for new events/messages
-        socket.on(`${this.room.id}:App\\Events\\MessageSent`, data => {
-            console.log(data);
+        socket.on(`room.${this.room.id}`, data => {
+            this.messages.push(data.data.message);
         });
 
     },
@@ -75,12 +75,6 @@ export default {
             }).then((response) => {
                 
             });
-            
-            this.messages.push({
-                name: this.name,
-                message: this.message,
-                type: "self"
-            })
 
             this.message = ""
         },

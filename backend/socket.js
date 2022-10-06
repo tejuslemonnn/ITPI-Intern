@@ -14,10 +14,7 @@ redis.psubscribe("*");
 
 redis.on("pmessage", function (pattern, channel, message) {
     message = JSON.parse(message);
-    io.emit("test", message);
-    console.log(message);
-    console.log(channel);
-    console.log(pattern);
+    io.emit("room." + message.data.room, message);
 });
 
 server.listen(3000);
